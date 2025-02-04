@@ -20,6 +20,7 @@ This Python program provides an **estimated** calculation of federal and Califor
     * Assumes standard deduction (not itemized).
     * Assumes all stock sales qualify for long-term capital gains.
     * Does not consider:
+        * Social Security, Medicare, or other extra taxes
         * Charitable donations
         * 401K or IRA contributions
         * Other sources of income (e.g., interest, dividends); just include it in your salary number.

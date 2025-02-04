@@ -23,8 +23,10 @@ This Python program provides an **estimated** calculation of federal and Califor
         * Charitable donations
         * 401K or IRA contributions
         * Other sources of income (e.g., interest, dividends); just include it in your salary number.
-        * Dependents, other things that affect overall tax liability
+        * Dependents, or other characteristics that affect overall tax liability
         * Itemized deductions
+
+This is a simple calculator for simple estimations.
 
 ## How to Use
 

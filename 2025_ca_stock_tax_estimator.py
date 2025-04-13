@@ -86,10 +86,12 @@ def calculate_taxes(salary, stock_sales):
     ca_capital_gains_tax = 0
 
     # --- NIIT Calculation ---
-    niit_threshold = 250000  # Threshold for NIIT for single filers in 2025
+    niit_threshold = 200000  # Threshold for NIIT for single filers in 2025
+    magi_simplified = salary + stock_sales #I ignore bank interest or dividends; toss it into your salary
     investment_income = stock_sales  # Assuming only stock sales for now
-    niit_taxable_income = max(0, investment_income - niit_threshold)
-    niit = niit_taxable_income * 0.038  # NIIT rate is 3.8%
+    excess_magi = max(0, magi_simplified - niit_threshold)
+    niit_base = min(investment_income, excess_magi)
+    niit = niit_base * 0.038  # NIIT rate is 3.8%
 
     # --- Total Tax Calculation ---
     total_federal_tax = federal_income_tax + federal_capital_gains_tax + niit
@@ -124,6 +126,7 @@ if __name__ == "__main__":
     print("-" * 20)
     print(f"Federal Income Tax: ${tax_results['federal_income_tax']:,.2f}")
     print(f"Federal Capital Gains Tax: ${tax_results['federal_capital_gains_tax']:,.2f}")
+    print(f"NIIT: ${tax_results['niit']:,.2f}")
     print(f"Total Federal Tax: ${tax_results['total_federal_tax']:,.2f}")
     print("-" * 20)
     print(f"California Income Tax: ${tax_results['ca_income_tax']:,.2f}")
@@ -132,5 +135,5 @@ if __name__ == "__main__":
     print("-" * 20)
     print(f"Total Tax (Federal + CA): ${tax_results['total_tax']:,.2f}")
     print(f"Effective Tax Rate: {tax_results['effective_tax_rate']:,.2f}%")
-    print(f"NIIT: ${tax_results['niit']:,.2f}")
+    print(f"Pre-Tax Total: ${args.salary + args.stock_sales:,.2f}")
     print(f"Estimated Post-Tax Take Home Pay: ${tax_results['take_home_pay']:,.2f}")
